@@ -72,7 +72,7 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5'
     //compile 'com.taobao.android:weex_sdk:0.4.+'
     /*source dependency*/
-    compile project(':weex_sdk_android')
+    compile project(':weex_sdk')
     debugCompile project(':weex_debug')
     compile project(':commons')
     compile 'com.taobao.android:dexposed:0.1.8'

@@ -3,8 +3,10 @@ package com.alibaba.weex;
 import android.app.Application;
 
 import com.alibaba.weex.commons.adapter.FrescoImageAdapter;
+import com.alibaba.weex.commons.adapter.ImageAdapter;
 import com.alibaba.weex.extend.PlayDebugAdapter;
-import com.alibaba.weex.extend.component.WTRichText;
+import com.alibaba.weex.extend.component.RichText;
+import com.alibaba.weex.extend.module.MyModule;
 import com.alibaba.weex.extend.module.RenderModule;
 import com.alibaba.weex.extend.module.WXEventModule;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -23,16 +25,18 @@ public class WXApplication extends Application {
     WXSDKEngine.addCustomOptions("appGroup", "WXApp");
     WXSDKEngine.initialize(this,
                            new InitConfig.Builder()
-                               .setImgAdapter(new FrescoImageAdapter())
+                               .setImgAdapter(new ImageAdapter())
                                .setDebugAdapter(new PlayDebugAdapter())
                                .build()
                           );
 
     try {
       Fresco.initialize(this);
-      WXSDKEngine.registerComponent("wtRichText", WTRichText.class);
+      WXSDKEngine.registerComponent("richtext", RichText.class);
       WXSDKEngine.registerModule("render", RenderModule.class);
       WXSDKEngine.registerModule("event", WXEventModule.class);
+
+      WXSDKEngine.registerModule("myModule", MyModule.class);
 
     } catch (WXException e) {
       e.printStackTrace();
