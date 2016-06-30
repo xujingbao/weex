@@ -8,4 +8,10 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import "WXDefine.h"
+
+    #ifndef __OPTIMIZE__
+        #define NSLog(...) NSLog(__VA_ARGS__)
+    #else
+        #define NSLog(...) {}
+    #endif
 #endif

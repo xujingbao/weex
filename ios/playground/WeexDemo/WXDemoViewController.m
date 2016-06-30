@@ -111,7 +111,7 @@
     };
     
     _instance.renderFinish = ^(UIView *view) {
-        NSLog(@"render finish");
+        WXLogVerbose(@"render finish");
     };
     
     _instance.updateFinish = ^(UIView *view) {
