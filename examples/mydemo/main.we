@@ -1,0 +1,172 @@
+<template>
+    <div>
+        <div style="align-items: center;">
+            <image class="logo_style"
+                   src="http://e.hiphotos.baidu.com/baike/pic/item/3bf33a87e950352a5273d94a5143fbf2b2118b66.jpg"></image>
+        </div>
+        <div class="row">
+            <text class="text_style1">余额</text>
+            <text class="text_amount">$10000.00</text>
+            <wxc-button type="warning" size="small" value="提现"
+                        onclick="login"></wxc-button>
+        </div>
+        <div class="row">
+            <text class="text_style2">账户状态 冻结</text>
+            <text class="text_style2">银行卡数 0</text>
+        </div>
+        <div class="row" style="margin-top: 50px; align-items: center">
+            <wxc-button type="primary" size="large" value="账户充值"
+                        onclick="login"></wxc-button>
+        </div>
+        <div class="row" repeat="{{item in itemList}}">
+            <div class="grid-cell" repeat="{{gc in item.data}}">
+                <image class="grid-cell-icon"
+                       src="{{gc.image}}" imageUrl="{{gc.url}}" onclick="onItemClick"></image>
+                <text class="title">{{gc.title}}</text>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style>
+
+    .row {
+        flex-direction: row;
+    }
+
+    .title {
+        text-align: center;
+        flex: 1;
+        color: grey;
+        font-size: 25px;
+    }
+
+    .grid-cell {
+        flex: 1;
+        align-items: center;
+        border-width: 2px;
+        border-color: #d5d5d5;
+        border-style: solid;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .grid-cell-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .text_style1 {
+        flex: 1;
+        text-align: left;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .text_amount {
+        text-align: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .text_style2 {
+        margin-right: 0;
+        flex: 1;
+        border-width: 2px;
+        border-color: #d5d5d5;
+        border-style: solid;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .logo_style {
+        width: 358px;
+        height: 138px;
+    }
+</style>
+
+<script>
+    //
+    require('weex-components');
+    module.exports = {
+        data: {
+            itemList: [
+                {
+                    data: [
+                        {
+                            title: '功能名称1',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                        {
+                            title: '功能名称2',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                        {
+                            title: '功能名称3',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                    ]
+                },
+                {
+                    data: [
+                        {
+                            title: '功能名称4',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                        {
+                            title: '功能名称5',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                        {
+                            title: '功能名称6',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                    ]
+                },
+                {
+                    data: [
+                        {
+                            title: '功能名称7',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                        {
+                            title: '功能名称8',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                        {
+                            title: '功能名称9',
+                            image: 'http://7xvnqd.com1.z0.glb.clouddn.com/icon_card%402x.png',
+                            url: 'page.js'
+                        },
+                    ]
+                }]
+        },
+        created: function () {
+
+        },
+        ready: function () {
+
+        },
+        methods: {
+            onItemClick: function (e) {
+                var url = e.target.attr.imageUrl;
+                var $modal = require('@weex-module/modal');
+                $modal.toast({'message': url, duration: 0.5});
+            }
+        }
+    }
+</script>

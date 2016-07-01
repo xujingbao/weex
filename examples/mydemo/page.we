@@ -1,0 +1,26 @@
+<template>
+
+</template>
+
+<style>
+
+</style>
+
+<script>
+	//
+	require('weex-components');
+	module.exports = {
+		data : {
+
+		},
+		created: function () {
+		
+		},
+		ready: function () {
+		
+		},
+		methods : {
+		
+		}
+	}
+</script>

@@ -1,0 +1,108 @@
+<template>
+    <scroller class="content">
+        <div class="row row-align" style="align-items: center">
+            <image class="logo_style"
+                   src="http://e.hiphotos.baidu.com/baike/pic/item/3bf33a87e950352a5273d94a5143fbf2b2118b66.jpg"></image>
+        </div>
+        <input style="height: 90px" class="login_input_style" type="text" placeholder="请输入用户名" value="">
+        </input>
+        <input style="height: 90px" class="login_input_style" type="password" placeholder="请输入密码" value="">
+        </input>
+
+        <div class="row row-align" style="align-items: center">
+            <wxc-button type="primary" size="large" class="login_button_style" value="登录" onclick="login"
+                        style=""></wxc-button>
+        </div>
+    </scroller>
+</template>
+
+<style>
+    .content {
+        background-color: #5eb7ec;
+    }
+
+    .logo_style {
+        width: 358px;
+        height: 138px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .login_button_style {
+        width: 80%;
+    }
+
+    .login_input_style {
+        height: 80px;
+        font-size: 40px;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: #d5d5d5;
+        border-style: solid;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+</style>
+
+<script>
+    //
+    require('weex-components');
+    var animation = require('@weex-module/animation');
+    var modal = require('@weex-module/modal');
+    module.exports = {
+        data: {
+            dir: 'examples',
+            baseURL: ''
+        },
+        created: function () {
+            var bundleUrl = this.$getConfig().bundleUrl;
+            bundleUrl = new String(bundleUrl);
+            var nativeBase;
+            var isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
+
+            var isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf('WeexDemo.app') > 0;
+            if (isAndroidAssets) {
+                nativeBase = 'file://assets/';
+            }
+            else if (isiOSAssets) {
+                nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
+            }
+            else {
+                var host = 'localhost:12580';
+                var matches = /\/\/([^\/]+?)\//.exec(this.$getConfig().bundleUrl);
+                if (matches && matches.length >= 2) {
+                    host = matches[1];
+                }
+                nativeBase = 'http://' + host + '/' + this.dir + '/build/';
+            }
+            var h5Base = './index.html?page=./' + this.dir + '/build/';
+            var base = nativeBase;
+            if (typeof window === 'object') {
+                base = h5Base;
+            }
+            //$modal.toast({'message': base, duration: 0.5});
+            this.baseURL = base;
+        },
+        ready: function () {
+            //var self = this;
+        },
+        methods: {
+            login: function (e) {
+                //
+                this.$call('navigator', 'push', {
+                    'url': this.baseURL + 'mydemo/main.js',
+                    'animated': 'true'
+                }, function () {
+                    //
+                });
+            }
+        }
+    }
+</script>
