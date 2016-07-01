@@ -10,6 +10,7 @@
       items: [
         // `name` key is the example filename without '.we'
         // Support sub directory, e.g. 'new-fashion/index'
+        {name: 'mydemo/index', title: 'MyDemo'},
         {name: 'hello', title: 'Hello World'},
         {name: 'syntax/index', title: 'More Syntax'},
         {name: 'style/index', title: 'Common Style'},
